@@ -72,7 +72,7 @@ extract_df_lm = function(regression_model, include.intercept = T){
 #'@export
 
 extract_df_lmerTest = function(lmerTest_model, include.intercept = T){
-  coef_output = coef(summary(lmerTest_model))
+  coef_output = coef(lmerTest::summary(lmerTest_model)) #this kept calling the wrong summary function
   coef_names = row.names(coef_output)
   output = as.data.frame(coef_output)
   output$predictor = coef_names
@@ -82,22 +82,5 @@ extract_df_lmerTest = function(lmerTest_model, include.intercept = T){
 
   row.names(output) <- NULL
 
-  select(output, predictor, everything()) #%>% rename(p_value = prt)
+  select(output, predictor, everything()) %>% rename(p_value = prt)
 }
-
-
-test_fun = function(lmerTest_model, include.intercept = T){
-  coef_output = coef(summary(lmerTest_model))
-  coef_names = row.names(coef_output)
-  output = as.data.frame(coef_output)
-  output$predictor = coef_names
-  names(output) = stringr::str_replace_all(tolower(names(output)), pattern= "[^[:alnum:]]", repl="")
-
-  if(!include.intercept) output = subset(output, predictor != "(Intercept)")
-
-  row.names(output) <- NULL
-
-  select(output, predictor, everything()) #%>% rename(p_value = prt)
-}
-
-
