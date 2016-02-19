@@ -22,6 +22,6 @@ dfReg <- function(regression_model, guess_model_type = NULL, ...) {
     warning("Model type not supported, trying 'lm'. You can suggest other types by specifying 'guess_model_type'")
   }
 
-  regression_model
+  extract_df(regression_model, object_type)
 
 }
