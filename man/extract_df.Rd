@@ -2,19 +2,24 @@
 % Please edit documentation in R/extract_df.R
 \name{extract_df}
 \alias{extract_df}
-\title{This function directs to the correct processing function}
+\title{This is the main function in the dfReg package,}
 \usage{
-extract_df(regression_model, object_type, ...)
+extract_df(regression_model, guess_model_type = NULL, ...)
 }
 \arguments{
 \item{regression_model}{The inputed model to be processed}
 
-\item{object_type}{the string argument to be evaluated}
+\item{guess_object_type}{If type not supported can try to guess from a similar object. Currently knows c("lm", "glm", "merModLmerTest", "lmerMod")}
 }
 \value{
 a data.frame object with predictor names and estimates
 }
 \description{
-This function directs to the correct processing function
+This function takes in a fitted model objects, determines the type of the object, and processes it accordingly
+}
+\examples{
+test_data = data.frame(predictor = 1:10, outcome = rnorm(10))
+test_model = lm(outcome ~ predictor, data = test_data)
+extract_df(test_model)
 }
 
