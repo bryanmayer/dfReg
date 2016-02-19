@@ -2,26 +2,32 @@
 % Please edit documentation in R/extract_df_regressiontype.R
 \name{extract_df_lmerTest}
 \alias{extract_df_lmerTest}
-\title{This function processed lm or glm regression}
+\title{This function processed lmer model when lmerTest package is loaded}
 \usage{
-extract_df_lmerTest(regression_model, include_intercept = T)
+extract_df_lmerTest(lmerTest_model, include.intercept = T)
 }
 \arguments{
-\item{regression_model}{The inputed model to be processed}
+\item{lmerTest_model}{A model generated using lmerTest}
 
-\item{include_intercept}{Include the intercept estimate. Default TRUE.}
+\item{include.intercept}{Include the intercept estimate. Default TRUE.}
 }
 \value{
 a data.frame object with predictor names and estimates
 }
 \description{
-This function processed lm or glm regression
+This function processed lmer model when lmerTest package is loaded
 }
 \examples{
-test_data = data.frame(predictor = 1:10, outcome = rnorm(10))
-test_model = lm(outcome ~ predictor, data = test_data)
-extract_df_lm(test_model)
-extract_df_lm(test_model, include.intercept = F)
+library(lmerTest)
+test_data = data.frame(
+  predictor1 = 1:100,
+  predictor2 = rep(LETTERS[1:2], each = 50),
+  outcome = rnorm(100),
+  group = sample(LETTERS[1:3], 100, replace = T)
+  )
+test_model = lmer(outcome ~ predictor1 + predictor2 + (1|group), data = test_data)
+extract_df_lmerTest(test_model)
+extract_df_lmerTest(test_model, include.intercept = F)
 
 }
 

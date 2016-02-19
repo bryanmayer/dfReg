@@ -4,12 +4,12 @@
 \alias{extract_df_lm}
 \title{This function processed lm or glm regression}
 \usage{
-extract_df_lm(regression_model, include_intercept = T)
+extract_df_lm(regression_model, include.intercept = T)
 }
 \arguments{
 \item{regression_model}{The inputed model to be processed}
 
-\item{include_intercept}{Include the intercept estimate. Default TRUE.}
+\item{include.intercept}{Include the intercept estimate. Default TRUE.}
 }
 \value{
 a data.frame object with predictor names and estimates

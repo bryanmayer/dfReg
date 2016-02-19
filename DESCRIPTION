@@ -7,7 +7,7 @@ Author@R: Author@R: person("Bryan", "Mayer", email = "msubryan@gmail.com",
     role = c("aut", "cre"))
 Description: This package turns regression objects into data.frame for easier
     processing, plotting, and tabling.
-Imports:
+Depends:
   dplyr,
   stringr
 License: CC0
