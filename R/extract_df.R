@@ -17,11 +17,13 @@ extract_df <- function(regression_model, guess_model_type = NULL, ...) {
   object_type = get_object_type(regression_model, ...)
   supported_types = c("lm", "glm", "merModLmerTest", "lmerMod")
   if(!object_type %in% supported_types){
-    if(!is.null(guess_model_type)) object_type = guess_model_type
-  } else{
-    warning("Model type not supported, trying 'lm'. You can suggest other types by specifying 'guess_model_type'")
+    if(!is.null(guess_model_type)) {
+      object_type = guess_model_type
+      } else{
+        warning("Model type not supported, trying 'lm'. You can suggest other types by specifying 'guess_model_type'")
+        object_type = "lm"
+      }
   }
 
   extract_df_switch(regression_model, object_type)
-
 }
